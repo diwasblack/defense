@@ -16,6 +16,7 @@
 \bibliography{references}
 \usepackage{amssymb}
 \usepackage{ulem}
+\usepackage{color,soul}
 
 \title{Significant News Detection}
 \subtitle{Master's Thesis}
@@ -342,7 +343,7 @@ The IDF values for all the stems are calculated and the stems are sorted in desc
 \begin{frame}{TF-IDF vector}
     \begin{itemize}
         \item The top 1000 stems are selected from the sorted stem list.
-        \item Convert a text to a 1000 dimensional vector.
+        \item Can convert a text to a 1000 dimensional vector.
         \item Each component of the vector is a TF-IDF value for a term $t$ in the document $d$.
         \item The vector $v$ obtained is then normalized using the $L^2$ norm as follows,
         \begin{equation}
@@ -459,36 +460,36 @@ The IDF values for all the stems are calculated and the stems are sorted in desc
 \begin{frame}{Correct Predictions}
     \textbf{Actual: Significant \hfill Predicted: Significant}
     \begin{enumerate}
-        \item Detectives are investigating following a robbery outside a licensed premises in St Albans overnight.More..
-        \item Homicide Squad detectives have charged a man following an alleged fatal stabbing at Ultima.
-        \item Detectives investigating bank robbery approx. 2:15 pm in 600 blk S. Dearborn.  Suspect fled, at large. He is described as white male, 30s, 5'7", dark bb cap, grey hooded sweatshirt. If you recognize him, contact SPD. https://t.co/Fg4Cblhhxd.
+        \item \underline{Detectives} are \underline{investigating} \underline{following} a \underline{robbery} \underline{outside} a licensed premises in \underline{St} Albans overnight.More..
+        \item \underline{Homicide} \underline{Squad} \underline{detectives} have \underline{charged} a \underline{man} \underline{following} an \underline{alleged} \underline{fatal} \underline{stabbing} at Ultima.
+        \item \underline{Detectives} \underline{investigating} \underline{bank} \underline{robbery} \underline{approx}. 2:15 \underline{pm} in 600 \underline{blk} S. Dearborn.  \underline{Suspect} fled, at \underline{large}. He is described as \underline{white} \underline{male}, 30s, 5'7", \underline{dark} bb cap, grey hooded sweatshirt. If you \underline{recognize} him, \underline{contact} SPD. https://t.co/Fg4Cblhhxd.
     \end{enumerate}
 \end{frame}
 
 \begin{frame}{Correct Predictions}
     \textbf{Actual: Non-significant \hfill Predicted: Non-significant}
     \begin{enumerate}
-        \item RT seabikeblog: Had a bike stolen recently? May want to SeattlePD’s GetYourBikeBack timeline. Just posted a bunch. SEAbikes
-        \item There's two weeks left to vote in the Met Excellence Awards. MPSTootingTnC are nominated for Safer Neighbourhoods Team of the Year for their diligent work tackling an increasing drug anti-social behaviour issue in the area. Learn more; cast your vote
-        \item It was over before it began for this 18-year-old who lost her licence after only two hours.
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}{Incorrect Predictions}
-    \textbf{Actual: Non-significant \hfill Predicted: Significant}
-    \begin{enumerate}
-        \item NeighborhoodPolicing is NYPDprotecting NYPDconnecting: Our NYPD43Pct officers visited Stevenson HS to share information with Bronx students on healthy dating relationships as part of TeenDatingViolenceAwarenessMonth.
-        \item Victoria Police and VicRoads were on site last night in St Kilda to ensure the safety of motorists and onlookers as the Loy Yang generator (which weighs 650 tonnes and is as large as a jumbo jet!) made its way very slowly to the Melbourne docks. Go team!
-        \item Robert was 23 years old when he got behind the wheel intoxicated, struck two pedestrians and killed one of them. He now shares his personal experience as part of the Cool Heads road safety program. Read more in the Police Life Summer edition
+        \item \underline{RT} seabikeblog: Had a \underline{bike} \underline{stolen} \underline{recently}? May \underline{want} to SeattlePD’s GetYourBikeBack timeline. Just \underline{posted} a bunch. SEAbikes
+        \item \underline{There's} two \underline{weeks} \underline{left} to \underline{vote} in the \underline{Met} \underline{Excellence} \underline{Awards}. MPSTootingTnC are nominated for \underline{Safer} Neighbourhoods \underline{Team} of the \underline{Year} for their diligent \underline{work} \underline{tackling} an \underline{increasing} \underline{drug} anti-social \underline{behaviour} \underline{issue} in the \underline{area}. \underline{Learn} more; cast your \underline{vote}
+        \item It was over before it began for this 18-\underline{year-old} who \underline{lost} her licence after only two \underline{hours}.
     \end{enumerate}
 \end{frame}
 
 \begin{frame}{Incorrect Predictions}
     \textbf{Actual: Significant \hfill Predicted: Non-significant}
     \begin{enumerate}
-        \item RT MPSNorthEndRY: We've just found this sword in a bush in comptonplace whilst completing a weapons sweep in partnership with MPSErith…
-        \item Police will remain on the scene at Flinders Street well into the evening and tomorrow morning. We ask the community to continue to avoid the highlighted area. We will provide an update once the crime scene has been cleared.
-        \item Police Officer Glenn Doss, Jr. of the detroitpolice lost his life protecting the residents of Detriot. NeverForget
+        \item \underline{RT} @MPSCamden: \underline{Police} were \underline{dealing} with a \underline{suspicious} \underline{package} in Pentonville Road/Caledonian \underline{Road}, KingsCross. The \underline{package} has been deemed…
+        \item \underline{RT} @MPSHammFul: FH \underline{schools} \underline{officers} \underline{carried} out a \underline{weapons} \underline{sweep} in \underline{Little} Wormwood Scrubs glad to \underline{say} \underline{nothing} \underline{found} \underline{StopKnifeCrime} OpScep…
+        \item All \underline{roads} in Melbourne's \underline{CBD} have been \underline{reopened} after a \underline{large} \underline{number} of \underline{pedestrians} were \underline{struck} by a \underline{car} on \underline{Flinders} \underline{Street} \underline{yesterday} \underline{afternoon}. All \underline{trams} are now \underline{also} \underline{operating} as per usual.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Incorrect Predictions}
+    \textbf{Actual: Non-significant \hfill Predicted: Significant}
+    \begin{enumerate}
+        \item UK \underline{head} of \underline{counter} \underline{terrorism} \underline{policing} \underline{calls} on \underline{everyone} to \underline{play} \underline{role} in defeating \underline{terrorism} and \underline{extremism} https://t.co/rfVzB8jF76 https://t.co/KwzBAfHJ4B
+        \item \underline{RT} @NYPDnews: “The assassination of my \underline{brother} in 1988 was not only a \underline{personal} \underline{tragedy}, but was really a terrible \underline{tragedy} for the \underline{entire} \underline{NY}…
+        \item \underline{Police} \underline{Life} magazine \underline{recently} \underline{headed} to \underline{Mornington} Peninsula for an \underline{evening} shift in the brawler \underline{van} that covered all \underline{bases} from bitumen to \underline{bay}. \underline{Check} out the \underline{full} \underline{story} in the \underline{Police} \underline{Life} \underline{Summer} edition
     \end{enumerate}
 \end{frame}
 
