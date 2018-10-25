@@ -57,7 +57,7 @@
 \end{frame}
 
 \begin{frame}{Fake news }
-    Fake news impacts \\
+    Fake news viewing impacts \\
     \begin{itemize}
         \item political attitudes toward politicians \autocite{balmas2014fake}
         \item the ability of people to accept truthful news by confusing them with false stories \footnote{\url{https://www.nytimes.com/2016/11/28/opinion/fake-news-and-the-internet-shell-game.html?\%20r=0}}.
@@ -111,26 +111,41 @@
     \end{enumerate}
 \end{frame}
 
-\begin{frame}{Fake news classification}
-    \begin{table}[ht]
-    \centering
-    \begin{tabular}{ p{4cm} c r }
-    \hline
-    \textbf{Models} & \textbf{Classification} & \textbf{Highest Accuracy} \\
-    \hline
-    \textbf{Naive Bayes} & 2 class & 74\% \\
-    \hline
-    SVM, \textbf{SGD}, Random Forest, Bounded decision tree, and gradient boosting & 2 class & 77.2\% \\
-    \hline
-    Logistic regression, Bidirection LSTM, \textbf{CNN} & 6 class & 27.0\% \\
-    \hline
-    SVM, CNN, TCNN, \textbf{TCNN-URG} & 2 class & 89.94\% \\
-    \hline
-    \end{tabular}
-    \caption{Fake news classification}
-    \label{tbl:fake_news_classification_performance}
-    \end{table}
+\begin{frame}{Related works on fake news classification}
+    \begin{itemize}
+        \item
+        \textbf{Paper:} Fake news detection using naive Bayes classifier \\
+        \textbf{Classification:} Binary \\
+        \textbf{Model:} Naive Bayes \\
+        \textbf{Accuracy:} 74\% \\
 
+        \item
+        \textbf{Paper:} Evaluating machine learning algorithms for fake news detection \\
+        \textbf{Classification:} Binary \\
+        \textbf{Models:} Random Forest, Bounded decision tree, Gradient boosting, SVM, SGD \\
+        \textbf{Best accuracy:} 77.2\% \\
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Related works on fake news classification}
+    \begin{itemize}
+        \item
+        \textbf{Paper:} "Liar, Liar Pants on Fire": A New Benchmark Dataset for Fake News Detection \\
+        \textbf{Classification:} Multiclass \\
+        \textbf{Labels:} "pants-fire", "false", "barely-true", "half-true", "mostly-true", "true"\\
+        \textbf{Models:} Logistic regression, Bidirection LSTM, CNN \\
+        \textbf{Best accuracy:} 27.0\% \\
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Related works on fake news classification}
+    \begin{itemize}
+        \item
+        \textbf{Paper:} Neural User Response Generator: Fake News Detection with Collective User Intelligence.
+        \textbf{Classification:} Binary \\
+        \textbf{Models:} SVM, CNN, TCNN, TCNN-URG \\
+        \textbf{Best accuracy:} 89.94\% \\
+    \end{itemize}
 \end{frame}
 
 \section{Method}
@@ -347,12 +362,14 @@ The IDF values for all the stems are calculated and the stems are sorted in desc
 
 \begin{frame}{Logistic Regression}
     \begin{itemize}
-        \item Regularized logistic regression
         \item Hypothesis function
         \begin{equation}
             \label{eq:regularized_logistic_regression}
             h_{\theta}(x) = \frac{1}{1 + {e}^{-{\theta}^{t}. x}}
         \end{equation}
+        \item Regularized logistic regression with L2 penalty
+        \item The best value of the regularization coefficient $\lambda$ is selected during the cross-validation
+        \item $\lambda$ values: 1, 50, 100, 200, 300, 400
     \end{itemize}
 \end{frame}
 
@@ -362,16 +379,22 @@ The IDF values for all the stems are calculated and the stems are sorted in desc
         \item RBF kernel
         \begin{equation}
             \label{eq:rbf_kernel}
-            K(x, x^{'}) = exp(- \frac{{\lVert x - x^{'} \rVert}^{2}}{2 \sigma^{2}})
+            K(x, x^{'}) = exp(- \gamma {\lVert x - x^{'} \rVert}^{2})
+            % K(x, x^{'}) = exp(- \frac{{\lVert x - x^{'} \rVert}^{2}}{2 \sigma^{2}})
         \end{equation}
+        \item $\gamma$: 0.001
+        \item The best value of the hyperparameter $C$ is selected during the cross-validation
+        \item C values: 1, 50, 100, 200, 300, 400
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Random Forests}
     \begin{itemize}
-        \item Criterion: gini
+        \item Split criterion: Gini
         \item Minimum sample split: 2
         \item Minimum sample leaf: 1
+        \item The best value for the number of trees is selected during the cross-validation step
+        \item Number of trees: 10, 12, 24
     \end{itemize}
 \end{frame}
 
@@ -379,6 +402,11 @@ The IDF values for all the stems are calculated and the stems are sorted in desc
     \begin{itemize}
         \item Three layer network
         \item Activation function: ReLu
+        \item Optimizer: ADAM
+        \item Mini batch size: 200
+        \item The best value for the learning rate and number of hidden units will be selected during the cross-validation step.
+        \item Learning rates: 0.1, 0.01
+        \item Hidden units: 250, 500
     \end{itemize}
 \end{frame}
 
